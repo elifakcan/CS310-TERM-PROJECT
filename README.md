@@ -1,87 +1,55 @@
 # StyleSwipe 👗
 
-**StyleSwipe** is a mobile outfit recommendation app that lets users swipe through the latest looks from **Inditex brands** (Zara, Massimo Dutti, Pull&Bear, Bershka, Stradivarius).  
-Users **swipe right** to like or **left** to skip outfits — discovering new combinations in categories such as **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
+**StyleSwipe** is a mobile outfit recommendation app where users swipe through full outfit combinations from **Inditex brands** such as Zara, Massimo Dutti, Pull&Bear, Bershka, and Stradivarius.  
+Users **swipe right** to like or **left** to skip outfits.  
+The app offers categories like **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
 
 ---
 
 ## 🚀 Features
-- Swipe-based outfit recommendations  
-- Category filter (Business Casual, Casual, Formal, School, Party)  
-- Save favorites for later  
-- View product details and brand links  
-- (Future) Sign in with Google/Apple  
-- (Future) Personalized recommendations from liked items  
+- Swipe-based outfit discovery  
+- Category filtering  
+- Favorites section  
+- Product details with brand links  
+- (Planned) Google/Apple sign-in & personalized recommendations  
 
 ---
 
-## 👥 Contributors
-- **Ece Gülkanat**
-- **Zeynep Bilici**
-- **Zehra Kanberoğlu**
-- **Burhan Berke Çakmak**
-- **Elif Ceren Akcan**
-- **Alper Dilek**
+## 👥 Team Members
+- Ece Gülkanat  
+- Zeynep Bilici  
+- Zehra Kanberoğlu  
+- Burhan Berke Çakmak  
+- Elif Ceren Akcan  
+- Alper Dilek  
 
 ---
 
 ## 🛠️ Tech Stack
-- **Flutter 3.22+**
-- **Dart**
-- **Firebase (optional)** for cloud storage & auth
-- **SQLite / SharedPreferences** for local data
+- Flutter 3.22+  
+- Dart  
+- Firebase (optional)  
+- SQLite / SharedPreferences  
 
 ---
 
-## 📂 Folder Structure
+## ⚙️ Setup
+```bash
+git clone https://github.com/zeynepbilici/CS310-TERM-PROJECT.git
+cd styleswipe
+flutter pub get
+flutter run
 ```
-lib/
- ├─ main.dart
- ├─ screens/
- │   ├─ home_screen.dart
- │   ├─ swipe_screen.dart
- │   ├─ favorites_screen.dart
- ├─ models/
- │   └─ outfit.dart
- ├─ services/
- │   └─ mock_data_source.dart
- └─ widgets/
-     └─ outfit_card.dart
-```
-
----
-
-## ⚙️ Setup Instructions
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/yourusername/styleswipe.git
-   cd styleswipe
-   ```
-2. Install dependencies  
-   ```bash
-   flutter pub get
-   ```
-3. Run the app  
-   ```bash
-   flutter run
-   ```
 
 ---
 
 ## 📌 Version Control
-- A **shared GitHub repository** was created for this project.  
-- All team members were added as **collaborators**.  
-- Includes a **proper Flutter `.gitignore`** and **initial commit** setup.  
-
----
-
-## 🪄 Future Roadmap
-- Outfit builder and sharing features  
-- Smart outfit recommendations (AI-driven)  
-- Price alert system for favorite products  
+- Shared GitHub repository created  
+- All members added as collaborators  
+- Includes Flutter `.gitignore` and initial commit  
 
 ---
 
 ## 🧾 License
-This project is for **educational purposes** only.  
-Product data and images belong to respective Inditex brands.
+For educational use only.  
+All product data and images belong to respective Inditex brands.
