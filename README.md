@@ -1,6 +1,6 @@
-# StyleSwipe 👗
+# SwipeFit 👗
 
-**StyleSwipe** is a mobile outfit recommendation app where users swipe through full outfit combinations from **Inditex brands** such as Zara, Massimo Dutti, Pull&Bear, Bershka, and Stradivarius.  
+**SwipeFit** is a mobile outfit recommendation app where users swipe through full outfit combinations from **Inditex brands** such as Zara, Massimo Dutti, Pull&Bear, Bershka, and Stradivarius.  
 Users **swipe right** to like or **left** to skip outfits.  
 The app offers categories like **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
 
