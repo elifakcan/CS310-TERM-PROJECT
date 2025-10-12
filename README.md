@@ -1,7 +1,7 @@
 # StyleSwipe 👗
 
 **StyleSwipe** is a mobile outfit recommendation app that lets users swipe through the latest looks from **Inditex brands** (Zara, Massimo Dutti, Pull&Bear, Bershka, Stradivarius).  
-Just like Tinder, users **swipe right** to like or **left** to skip outfits — discovering new combinations in categories such as **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
+Users **swipe right** to like or **left** to skip outfits — discovering new combinations in categories such as **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
 
 ---
 
