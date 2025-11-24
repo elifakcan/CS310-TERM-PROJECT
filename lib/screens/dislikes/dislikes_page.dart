@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../routes/app_routes.dart';
+import '../../routes/app_routes.dart'; // ← DÜZELTİLDİ
+
 class DislikesPage extends StatelessWidget {
   const DislikesPage({super.key});
 

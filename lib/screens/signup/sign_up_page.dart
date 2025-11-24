@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import ‘../routes/app_routes.dart’;
+import '../../routes/app_routes.dart'; // ← DÜZELTİLDİ
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -13,6 +14,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
+
   bool _isObscure = true;
   bool _isLoading = false;
 
@@ -28,12 +30,20 @@ class _SignUpPageState extends State<SignUpPage> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    await Future.delayed(const Duration(milliseconds: 600)); // demo amaçlı
+    await Future.delayed(const Duration(milliseconds: 600));
     if (!mounted) return;
     setState(() => _isLoading = false);
 
-    // Kayıt başarılı varsayımı → Home'a geç
-    Navigator.pushReplacementNamed(context, '/home');
+    // Kayıt başarılı → HomePage'e bilgilerle git
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.home,
+      arguments: {
+        'name': _nameCtrl.text.trim(),
+        'surname': "",       // istersen surname alanı da ekleyebilirsin
+        'username': _emailCtrl.text.trim().split('@')[0],
+      },
+    );
   }
 
   @override
@@ -51,7 +61,6 @@ class _SignUpPageState extends State<SignUpPage> {
           constraints: const BoxConstraints(maxWidth: 420),
           child: Card(
             elevation: 4,
-            color: theme.cardColor.withOpacity(0.8),
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -60,48 +69,34 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Logo / Başlık
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'FitSwipe',
+                    Text('FitSwipe',
                         style: theme.textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Match outfits that match you.',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
-                      ),
-                    ),
+                        )),
+
                     const SizedBox(height: 20),
 
-                    // Name
+                    // NAME
                     TextFormField(
                       controller: _nameCtrl,
-                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                         labelText: 'Name',
-                        hintText: 'Zeynep Bilici',
                         prefixIcon: Icon(Icons.person_outline),
                         border: OutlineInputBorder(),
                       ),
                       validator: (v) =>
-                          (v == null || v.trim().length < 2) ? 'Please enter a valid name' : null,
+                      (v == null || v.trim().length < 2)
+                          ? 'Please enter a valid name'
+                          : null,
                     ),
                     const SizedBox(height: 12),
 
-                    // Email
+                    // EMAIL
                     TextFormField(
                       controller: _emailCtrl,
                       keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
                         labelText: 'Email',
-                        hintText: 'name@email.com',
                         prefixIcon: Icon(Icons.alternate_email),
                         border: OutlineInputBorder(),
                       ),
@@ -113,54 +108,36 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 12),
 
-                    // Password
+                    // PASSWORD
                     TextFormField(
                       controller: _passCtrl,
                       obscureText: _isObscure,
-                      textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        hintText: 'At least 6 characters',
                         prefixIcon: const Icon(Icons.lock_outline),
                         border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
-                          onPressed: () => setState(() => _isObscure = !_isObscure),
                           icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+                          onPressed: () => setState(() => _isObscure = !_isObscure),
                         ),
                       ),
                       validator: (v) =>
-                          (v == null || v.length < 6) ? 'Min. 6 characters' : null,
-                      onFieldSubmitted: (_) => _continue(),
+                      (v == null || v.length < 6)
+                          ? 'Min 6 characters'
+                          : null,
                     ),
                     const SizedBox(height: 18),
 
-                    // Continue Button
+                    // CONTINUE BUTTON
                     SizedBox(
                       width: double.infinity,
                       height: 48,
                       child: FilledButton(
                         onPressed: _isLoading ? null : _continue,
                         child: _isLoading
-                            ? const SizedBox(
-                                width: 22,
-                                height: 22,
-                                child: CircularProgressIndicator(strokeWidth: 2),
-                              )
+                            ? const CircularProgressIndicator(strokeWidth: 2)
                             : const Text('Continue'),
                       ),
-                    ),
-
-                    const SizedBox(height: 12),
-                    // Alt metin
-                    TextButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Login coming soon…')),
-                              );
-                            },
-                      child: const Text("Already have an account? Log in"),
                     ),
                   ],
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../routes/app_routes.dart';
+import '../../routes/app_routes.dart'; // ← DÜZELTİLDİ
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -67,18 +68,19 @@ class HomePage extends StatelessWidget {
                 iconSize: 48,
                 icon: const Icon(Icons.close, color: Color(0xFF143A66)),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/dislikes'); // veya AppRoutes.dislikes
+                  Navigator.pushNamed(context, AppRoutes.dislikes);
                 },
               ),
-              const SizedBox(width: 60),
+
               IconButton(
                 tooltip: 'Favorites',
                 iconSize: 48,
                 icon: const Icon(Icons.favorite, color: Color(0xFF143A66)),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/favorites'); // veya AppRoutes.favorites
+                  Navigator.pushNamed(context, AppRoutes.favorites);
                 },
               ),
+
             ],
           ),
         ],

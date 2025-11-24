@@ -9,13 +9,11 @@ import 'screens/home/home_page.dart';
 import 'screens/favorites/favorites_page.dart';
 import 'screens/dislikes/dislikes_page.dart';
 
-
 import 'screens/settings/settings_page.dart';
 import 'screens/settings/change_password_page.dart';
 
 import 'screens/category_menu/category_menu_part1_page.dart';
 import 'screens/category_menu/category_menu_part2_page.dart';
-
 
 void main() {
   runApp(const FitSwipeApp());
@@ -34,20 +32,20 @@ class FitSwipeApp extends StatelessWidget {
         useMaterial3: false,
       ),
 
-      
       initialRoute: AppRoutes.welcome,
 
       routes: {
-        
         AppRoutes.welcome: (context) => const WelcomePage(),
         AppRoutes.login:   (context) => const LoginPage(),
         AppRoutes.signup:  (context) => const SignUpPage(),
         AppRoutes.home:    (context) => const HomePage(),
 
-        
-        AppRoutes.settings: (context) => const SettingsPage(),
-        AppRoutes.changePassword: (context) => const ChangePasswordPage(),
-        
+        AppRoutes.favorites: (context) => const FavoritesPage(),
+        AppRoutes.dislikes:  (context) => const DislikesPage(),
+
+        AppRoutes.settings:      (context) => const SettingsPage(),
+        AppRoutes.changePassword:(context) => const ChangePasswordPage(),
+
         AppRoutes.categoryMenu1: (context) => const CategoryMenuPart1Page(),
         AppRoutes.categoryMenu2: (context) => const CategoryMenuPart2Page(),
       },

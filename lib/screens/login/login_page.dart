@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_paddings.dart';
 import '../../utils/app_text_styles.dart';
+import '../../routes/app_routes.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,22 +43,14 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    Navigator.pushReplacementNamed(context, '/home');
-
-    // Şimdilik sadece “Login successful” diyelim, başka sayfaya geçmiyoruz.
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Login Successful'),
-        content: Text('Welcome, ${_userCtrl.text}!'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.home, // 🔵 Hedef sayfa
+      arguments: {
+        'username': _userCtrl.text.trim(), // 🔵 HomePage'e gönderilen veri
+      },
     );
+
   }
 
   @override
