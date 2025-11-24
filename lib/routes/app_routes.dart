@@ -3,6 +3,8 @@ class AppRoutes {
   static const login   = '/login';
   static const signup  = '/signup';
   static const home    = '/home';
+  static const favorites = '/favorites';
+  static const dislikes = '/disliked';
   static const settings = '/settings';
   static const changePassword = '/change-password';
 
