@@ -7,5 +7,6 @@ class AppRoutes {
   static const dislikes = '/dislikes';
   static const settings = '/settings';
   static const changePassword = '/change-password';
-
+  static const categoryMenu1 = '/category_menu_1';
+  static const categoryMenu2 = '/category_menu_2';
 }
