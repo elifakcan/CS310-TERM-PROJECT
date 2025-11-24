@@ -4,7 +4,7 @@ class AppRoutes {
   static const signup  = '/signup';
   static const home    = '/home';
   static const favorites = '/favorites';
-  static const dislikes = '/disliked';
+  static const dislikes = '/dislikes';
   static const settings = '/settings';
   static const changePassword = '/change-password';
 
