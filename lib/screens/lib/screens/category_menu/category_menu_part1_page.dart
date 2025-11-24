@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import '../../routes/app_routes.dart';
 
 class CategoryMenuPart1Page extends StatefulWidget {
   const CategoryMenuPart1Page({super.key});
@@ -9,12 +9,10 @@ class CategoryMenuPart1Page extends StatefulWidget {
 }
 
 class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
-  
   static const creamColor = Color(0xFFFDF4E3);
   static const lightBlue = Color(0xFF5EA8D9);
   static const darkBlue = Color(0xFF234B73);
 
- 
   int selectedIndex = 0;
 
   static const _categoriesPart1 = [
@@ -30,9 +28,9 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
     'KNITWEAR',
   ];
 
-  void _onCategoryTap(BuildContext context, String category) {
+  void _onCategoryTap(String label) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Opening $category...')),
+      SnackBar(content: Text("Opening $label...")),
     );
   }
 
@@ -47,75 +45,22 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 8),
-             
               const Center(
                 child: Text(
                   'FitSwipe',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
                 ),
               ),
-              const SizedBox(height: 12),
 
-            
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTabItem('Woman', 0),
-                  const SizedBox(width: 18),
-                  _buildTabItem('Man', 1),
-                  const SizedBox(width: 18),
-                  _buildTabItem('Children', 2),
-                ],
-              ),
+              const SizedBox(height: 12),
+              _buildTabs(),
 
               const SizedBox(height: 24),
 
-              
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _categoriesPart1.length,
-                  itemBuilder: (context, index) {
-                    final label = _categoriesPart1[index];
-                    final bool isLight = index.isEven;
-                    final Color bgColor = isLight ? lightBlue : darkBlue;
-
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6),
-                      child: SizedBox(
-                        height: 48,
-                        child: ElevatedButton(
-                          onPressed: () => _onCategoryTap(context, label),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: bgColor,
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          child: Text(
-                            label,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              Expanded(child: _buildCategoryButtons()),
 
               const SizedBox(height: 8),
-
-            
-              _buildBottomBar(),
+              _buildBottomBar(context),
             ],
           ),
         ),
@@ -123,52 +68,99 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
     );
   }
 
-  
-  Widget _buildTabItem(String label, int index) {
-    final bool isSelected = index == selectedIndex;
+  Widget _buildTabs() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _tab('Woman', 0),
+        const SizedBox(width: 18),
+        _tab('Man', 1),
+        const SizedBox(width: 18),
+        _tab('Children', 2),
+      ],
+    );
+  }
 
+  Widget _tab(String label, int index) {
+    final isSelected = selectedIndex == index;
     return GestureDetector(
-      onTap: () {
-        setState(() => selectedIndex = index);
-      },
+      onTap: () => setState(() => selectedIndex = index),
       child: Text(
         label,
         style: TextStyle(
           fontSize: 16,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          decoration:
-          isSelected ? TextDecoration.underline : TextDecoration.none,
-          color: Colors.black87,
+          decoration: isSelected ? TextDecoration.underline : TextDecoration.none,
         ),
       ),
     );
   }
 
+  Widget _buildCategoryButtons() {
+    return ListView.builder(
+      itemCount: _categoriesPart1.length,
+      itemBuilder: (context, i) {
+        final label = _categoriesPart1[i];
+        final bg = i.isEven ? lightBlue : darkBlue;
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: SizedBox(
+            height: 48,
+            child: ElevatedButton(
+              onPressed: () => _onCategoryTap(label),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: bg,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
  
-  Widget _buildBottomBar() {
+  Widget _buildBottomBar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        
-        Container(
-          width: 36,
-          height: 36,
-          decoration: const BoxDecoration(
-            color: darkBlue,
-            shape: BoxShape.circle,
+      
+        GestureDetector(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.home);
+          },
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: const BoxDecoration(
+              color: darkBlue,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.home, color: Colors.white, size: 22),
           ),
-          child: const Icon(Icons.home, color: Colors.white, size: 22),
         ),
+
         const Icon(Icons.search, color: darkBlue, size: 28),
         const Text(
           'MENU',
           style: TextStyle(
-            color: darkBlue,
             fontWeight: FontWeight.w600,
+            color: darkBlue,
             letterSpacing: 1.2,
           ),
         ),
         const Icon(Icons.shopping_bag, color: darkBlue, size: 28),
+
         Container(
           width: 36,
           height: 36,
