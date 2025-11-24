@@ -6,6 +6,9 @@ import 'screens/login/login_page.dart';
 import 'screens/signup/sign_up_page.dart';
 import 'screens/home/home_page.dart';
 
+import 'screens/favorites/favorites_page.dart';
+import 'screens/dislikes/dislikes_page.dart';
+
 
 import 'screens/settings/settings_page.dart';
 import 'screens/settings/change_password_page.dart';
