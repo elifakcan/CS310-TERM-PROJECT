@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'routes/app_routes.dart';
+
 import 'screens/welcome/welcome_page.dart';
 import 'screens/login/login_page.dart';
 import 'screens/signup/sign_up_page.dart';
 import 'screens/home/home_page.dart';
 
+
+import 'screens/settings/settings_page.dart';
+import 'screens/settings/change_password_page.dart';
 
 void main() {
   runApp(const FitSwipeApp());
@@ -22,14 +26,21 @@ class FitSwipeApp extends StatelessWidget {
         primaryColor: const Color(0xFF143A66),
         useMaterial3: false,
       ),
+
+      
       initialRoute: AppRoutes.welcome,
+
       routes: {
+        
         AppRoutes.welcome: (context) => const WelcomePage(),
         AppRoutes.login:   (context) => const LoginPage(),
         AppRoutes.signup:  (context) => const SignUpPage(),
         AppRoutes.home:    (context) => const HomePage(),
-      },
 
+        
+        AppRoutes.settings: (context) => const SettingsPage(),
+        AppRoutes.changePassword: (context) => const ChangePasswordPage(),
+      },
     );
   }
 }
