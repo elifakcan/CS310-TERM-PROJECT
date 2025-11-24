@@ -13,4 +13,7 @@ class AppRoutes {
 
   static const categoryMenu1 = '/category_menu_1';
   static const categoryMenu2 = '/category_menu_2';
+  static const productDetail = '/product-detail';
+  static const shoppingBag   = '/shopping-bag';
+
 }

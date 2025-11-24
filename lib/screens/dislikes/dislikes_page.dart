@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../routes/app_routes.dart'; // ← DÜZELTİLDİ
+import '../../routes/app_routes.dart';
 
 class DislikesPage extends StatelessWidget {
   const DislikesPage({super.key});
@@ -41,8 +41,6 @@ class DislikesPage extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 8),
-          // “X” için iki seçenekten biri:
-          // 1) Icon(Icons.close)  2) Metin X (wireframe gibi)
           const Icon(Icons.close, color: _blue, size: 28),
           const SizedBox(height: 8),
 

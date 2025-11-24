@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../routes/app_routes.dart'; // ← DÜZELTİLDİ
+import '../../routes/app_routes.dart';
+import '../../utils/product.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
 
-  static const _blue = Color(0xFF143A66);
+  static const _blue = Color.fromARGB(255, 154, 197, 247);
   static const _bg   = Color(0xFFFFF9EF);
 
   // 9 örnek görsel (3x3)
@@ -31,7 +32,7 @@ class FavoritesPage extends StatelessWidget {
         title: const Text(
           'FitSwipe',
           style: TextStyle(
-            fontFamily: 'Pacifico', // varsa
+            fontFamily: 'Pacifico',
             fontSize: 28,
             fontWeight: FontWeight.w600,
             color: _blue,
@@ -45,7 +46,6 @@ class FavoritesPage extends StatelessWidget {
           const Icon(Icons.favorite, color: _blue, size: 28),
           const SizedBox(height: 8),
 
-          // Mavi çizgili 3x3 grid
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -61,8 +61,6 @@ class FavoritesPage extends StatelessWidget {
   }
 }
 
-/// İç çizgileri çift kalın göstermemek için: dış container sadece top/left çizer,
-/// her hücre sadece right/bottom çizer → tek kat çizgi görünür.
 class _BorderedGrid extends StatelessWidget {
   const _BorderedGrid({
     required this.images,
@@ -92,18 +90,38 @@ class _BorderedGrid extends StatelessWidget {
         itemCount: images.length,
         itemBuilder: (context, i) {
           final img = images[i];
-          return Container(
-            decoration: BoxDecoration(
-              border: Border(
-                right: BorderSide(color: lineColor, width: 1.2),
-                bottom: BorderSide(color: lineColor, width: 1.2),
+
+          final product = Product(
+            id: '$i',
+            name: 'Sample Product $i',
+            price: 199.99,
+            imageUrl: img,
+            sizes: ['S', 'M', 'L'],
+            color: 'Blue',
+            composition: 'Cotton 100%',
+          );
+
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                AppRoutes.productDetail,
+                arguments: product,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  right: BorderSide(color: lineColor, width: 1.2),
+                  bottom: BorderSide(color: lineColor, width: 1.2),
+                ),
               ),
-            ),
-            child: ClipRect(
-              child: Image.network(
-                img,
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
+              child: ClipRect(
+                child: Image.network(
+                  img,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                ),
               ),
             ),
           );
