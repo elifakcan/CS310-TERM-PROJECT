@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "cs310-fitswipe",
+          "appId": "1:244497018844:android:02877adbc3718b94efa919",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "cs310-fitswipe",
+          "configurations": {
+            "android": "1:244497018844:android:02877adbc3718b94efa919"
+          }
+        }
+      }
+    }
+  }
+}
