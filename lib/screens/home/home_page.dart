@@ -436,8 +436,8 @@ class _AddProductDialogState extends State<_AddProductDialog> {
           onPressed: _isLoading ? null : _handleSubmit,
           child: _isLoading
               ? SizedBox(
-                  width: 20,
-                  height: 20,
+                  width: 19,
+                  height: 19,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
                     valueColor: AlwaysStoppedAnimation<Color>(
