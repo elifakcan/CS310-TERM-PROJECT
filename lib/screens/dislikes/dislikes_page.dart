@@ -24,7 +24,7 @@ class DislikesPage extends StatelessWidget {
           'Dislikes',
           style: TextStyle(
             fontFamily: 'Pacifico',
-            fontSize: 28,
+            fontSize: 27,
             fontWeight: FontWeight.w600,
             color: colorScheme.primary,
           ),
