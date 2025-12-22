@@ -38,13 +38,16 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
     
+    // Main page scaffold
+   // Transparent AppBar for a clean, modern look    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        automaticallyImplyLeading: false, // Back butonunu gizle
+        automaticallyImplyLeading: false, // Hide default back button
         title: Text(
           "FitSwipe",
           style: TextStyle(
@@ -55,13 +58,16 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
         ),
       ),
 
+      
+     // Keeps content inside safe areas (notch, status bar, etc.)
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              /// TABS
+             
+              /// CATEGORY TABS (Woman / Man / Children)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -116,7 +122,7 @@ class _CategoryMenuPart1PageState extends State<CategoryMenuPart1Page> {
 
               const SizedBox(height: 12),
 
-              /// ⭐ PART 2'YE GEÇİŞ (Navigator ile) ⭐
+              ///  PART 2'YE GEÇİŞ (Navigator ile) 
               Center(
                 child: TextButton(
                   onPressed: () {
