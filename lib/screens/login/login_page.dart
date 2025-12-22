@@ -79,6 +79,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
           onPressed: () => Navigator.pop(context),
@@ -92,7 +94,16 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 40),
-                const Center(child: Text('FitSwipe', style: AppTextStyles.logo)),
+                Center(
+                child: Text(
+                  'FitSwipe',
+                  style: AppTextStyles.logo.copyWith(
+                    color: colorScheme.primary,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+
                 const SizedBox(height: 50),
                 Form(
                   key: _formKey,
