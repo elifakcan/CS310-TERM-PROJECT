@@ -32,7 +32,7 @@ void main() async {
     );
   } catch (e) {
     debugPrint('Firebase initialization error: $e');
-    // Continue anyway - error will be shown in UI
+    
   }
 
   runApp(
