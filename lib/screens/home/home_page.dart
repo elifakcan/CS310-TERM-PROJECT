@@ -193,7 +193,7 @@ class HomePage extends StatelessWidget {
                   ),
                   isThreeLine: true,
 
-                  // ❤️ Favorite + 🗑️ Delete buttons
+                  
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
