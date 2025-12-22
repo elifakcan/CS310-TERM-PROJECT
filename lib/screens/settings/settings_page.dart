@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔹 DARK MODE (SharedPreferences)
+            //  DARK MODE 
             SwitchListTile(
               title: Text(
                 'Dark Mode',
@@ -36,7 +36,7 @@ class SettingsPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // 🔹 CHANGE PASSWORD
+            //  CHANGE PASSWORD
             ListTile(
               leading: Icon(Icons.lock, color: theme.colorScheme.onSurface),
               title: Text(
@@ -54,7 +54,7 @@ class SettingsPage extends StatelessWidget {
 
             const Spacer(),
 
-            // 🔹 LOGOUT (ADIM 16)
+            //  LOGOUT 
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
