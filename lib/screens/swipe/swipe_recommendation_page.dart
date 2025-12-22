@@ -21,7 +21,7 @@ class _SwipeRecommendationPageState extends State<SwipeRecommendationPage> {
   Offset _cardOffset = Offset.zero;
   bool _isProcessing = false;
 
-  // Statik görsel URL'leri (örnek kıyafet görselleri)
+  //fit url's(example)
   static const List<String> _sampleImages = [
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop',
     'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&auto=format&fit=crop',
@@ -51,7 +51,7 @@ class _SwipeRecommendationPageState extends State<SwipeRecommendationPage> {
     final product = products[_currentIndex];
     final productProvider = context.read<ProductProvider>();
     
-    // Dislike işlemi
+    // Disliking
     await productProvider.addDislike(product);
 
     await Future.delayed(const Duration(milliseconds: 300));
@@ -76,7 +76,7 @@ class _SwipeRecommendationPageState extends State<SwipeRecommendationPage> {
     final product = products[_currentIndex];
     final productProvider = context.read<ProductProvider>();
     
-    // Like işlemi (favoriye ekle)
+    // Liking
     await productProvider.toggleFavorite(product, false);
 
     await Future.delayed(const Duration(milliseconds: 300));
