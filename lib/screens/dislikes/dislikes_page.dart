@@ -9,8 +9,8 @@ class DislikesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    final productProvider = context.watch<ProductProvider>();
+    final uid = FirebaseAuth.instance.currentUser?.uid;     // Current logged-in user ID
+    final productProvider = context.watch<ProductProvider>();     // Product provider for accessing dislike stream
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -19,7 +19,7 @@ class DislikesPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, // Disable default back button
         title: Text(
           'Dislikes',
           style: TextStyle(
@@ -31,14 +31,14 @@ class DislikesPage extends StatelessWidget {
         ),
         iconTheme: IconThemeData(color: colorScheme.primary),
       ),
-      body: uid == null
+      body: uid == null     // If user is not logged in, show warning message
           ? Center(
               child: Text(
                 'Login required.',
                 style: TextStyle(color: colorScheme.primary, fontSize: 16),
               ),
             )
-          : StreamBuilder<List<Product>>(
+          : StreamBuilder<List<Product>>(          // Otherwise, listen to user's disliked products in real-time
               stream: productProvider.streamMyDislikes(),
               builder: (context, snap) {
                 if (snap.connectionState == ConnectionState.waiting) {
