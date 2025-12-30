@@ -1,67 +1,214 @@
-# FitSwipe
+# FitSwipe - Outfit Recommendation App
 
-**FitSwipe** is a mobile outfit recommendation app where users swipe through full outfit combinations from **Inditex brands** such as Zara, Massimo Dutti, Pull&Bear, Bershka, and Stradivarius.  
-Users **swipe right** to like or **left** to skip outfits.  
-The app offers categories like **Business Casual**, **Casual**, **Formal**, **School Outfit**, and **Party**.
+**FitSwipe** is a mobile fashion discovery app where users swipe through individual clothing items from different brands.
+Users can **swipe right** to like items, swipe **left** to skip them, or add selected pieces to a **shopping bag**, where they can view the total price of the selected items. 
+The app offers categories like **Dress**, **Jackets**, **Coats| Trench Coats**, **Blazers**, and **T-Shirts** etc. for men, women and children.
 
----
-
-## 🚀 Features
-- Swipe-based outfit discovery  
-- Category filtering  
-- Favorites section  
-- Product details with brand links  
-- (Planned) Google/Apple sign-in & personalized recommendations  
 
 ---
 
-## 👥 Team Members
+## Project Overview & Motivation
 
-- **Ece Gülkanat (31983) — Testing & QA Lead**  
-  Plans the test strategy, runs smoke/regression tests, triages bugs, and verifies that features meet acceptance criteria.
+FitSwipe was developed as a CS310 Mobile Application Development course project. The app aims to provide users with an intuitive, swaping interface for discovering outfit combinations from popular fashion brands. The motivation behind this project was to create a seamless shopping experience where users can quickly browse and save their favorite outfit combinations.
 
-- **Zeynep Bilici (32333) — Learning & Research Lead**  
-  Tracks relevant tools/APIs and best practices, performs quick benchmarks/feasibility checks, and shares research notes with the team.
-
-- **Zehra Kanberoğlu (32169) — Integration & Repository Lead**  
-  Owns the GitHub workflow (branching/PR reviews), resolves merge conflicts, and maintains CI/versioning discipline.
-
-- **Burhan Berke Çakmak (32197) — Presentation & Communication Lead**  
-  Prepares slides and demo scripts, coordinates announcements/updates with instructors/TAs, and keeps concise meeting notes.
-
-- **Elif Ceren Akcan (32401) — Documentation & Submission Lead**  
-  Maintains README/installation guides and change logs, and prepares/validates deliverables for on-time submission.
-
-- **Alper Dilek (32071) — Project Coordinator**  
-  Manages scope and schedule, leads sprint planning, tracks risks/dependencies, and assigns/monitors tasks.
+**Target Audience**: Fashion-conscious individuals looking for outfit inspiration from several brands.
 
 ---
 
-## 🛠️ Tech Stack
-- Flutter 3.22+  
-- Dart  
-- Firebase 
-- SQLite / SharedPreferences  
+## Features
+
+- **User Authentication**: Secure email/password authentication via Firebase Auth with automatic user document creation
+- **Swipe-based Discovery**: Swipe through admin-curated outfit recommendations
+- **Favorites & Dislikes**: Save liked outfits and track disliked ones with undo functionality
+- **Shopping Bag with Quantity Controls**: Users can adjust item quantities in the cart using increment and decrement buttonsd
+- **Category Filtering**: Browse favorites by category (DRESS, JACKETS, COATS, SKIRTS, etc.) and gender
+- **Real-time Sync**: All data synced with Firebase Firestore in real-time with proper subcollection structure
+- **Dark Mode**: Toggle between light and dark themes (persisted with SharedPreferences)
+- **Profile Statistics**: View your favorites, dislikes, and bag count in settings
+- **Product Details**: View detailed information about each product
+- **Scroll Support**: Smooth scrolling on Likes and Dislikes pages for large lists
 
 ---
 
-## ⚙️ Setup
+## Tech Stack
+
+- **Flutter**: 3.22+ (SDK: ^3.9.2)
+- **Dart**: 3.9.2+
+- **Firebase**:
+  - Firebase Authentication (Email/Password)
+  - Cloud Firestore (Real-time database with subcollections)
+- **State Management**: Provider pattern with Dependency Injection support
+- **Local Storage**: SharedPreferences (Theme persistence)
+- **Testing**: Unit tests and Widget tests with mocking support
+
+---
+
+## Setup & Run Instructions
+
+### Prerequisites
+
+* Flutter SDK **3.22 or higher**
+* Android Studio or VS Code (with Flutter extensions)
+* Firebase account
+* Android emulator or physical device
+
+### Step 1: Clone the Repository
+
 ```bash
 git clone https://github.com/zeynepbilici/CS310-TERM-PROJECT.git
-cd styleswipe
+cd CS310-TERM-PROJECT-main
+```
+
+### Step 2: Install Dependencies
+
+```bash
 flutter pub get
+```
+
+### Step 3: Firebase Configuration
+
+* Create a Firebase project from the Firebase Console
+* Enable **Email/Password Authentication**
+* Enable **Cloud Firestore**
+* Download Firebase configuration files:
+
+  * `google-services.json` → `android/app/`
+  * `GoogleService-Info.plist` → `ios/Runner/`
+
+### Step 4: Run the Application
+
+```bash
 flutter run
 ```
 
 ---
 
-## 📌 Version Control
-- Shared GitHub repository created  
-- All members added as collaborators  
-- Includes Flutter `.gitignore` and initial commit  
+## Testing
+
+### Running Tests
+```bash
+flutter test
+```
+
+### Test Coverage
+
+The project includes the following tests:
+
+1. **Unit Test - Product Model** (`test/models/product_test.dart`):
+   - Tests Product model's `fromFirestore` method for correct JSON parsing
+   - Tests Product model's `toMap` method for correct map conversion
+   - Tests backward compatibility for price fields (minPrice/maxPrice → price)
+   - Uses `FakeFirebaseFirestore` and `MockDocumentSnapshot` for isolated testing
+
+2. **Widget Test - Swipe Screen** (`test/widgets/swipe_test.dart`):
+   - Verifies that swipe screen displays all required UI elements
+   - Tests presence of like button (heart icon)
+   - Tests presence of dislike button (close icon)
+   - Tests presence of bag button (shopping bag icon)
+   - Tests presence of "FitSwipe" title
+   - Uses Dependency Injection with `FakeProductService`, `FakeProductProvider`, and `FakeCartProvider` to avoid Firebase initialization
+
+All tests must pass successfully. If any test fails, check:
+- All dependencies are installed (`flutter pub get`)
+- Test files are properly configured with mocks
+- No actual Firebase calls are made during testing
 
 ---
 
-## 🧾 License
-For educational use only.  
-All product data and images belong to respective Inditex brands.
+## Known Limitations & Bugs
+
+- **None currently**: All features are stable and tested. The app works end-to-end without crashes.
+
+---
+
+## App Structure
+
+```
+lib/
+├── models/          # Data models (Product)
+├── services/        # Firebase services (ProductService)
+├── providers/       # State management
+│   ├── auth_provider.dart
+│   ├── product_provider.dart
+│   └── prefs_provider.dart
+├── screens/         # UI screens
+│   ├── auth_gate.dart
+│   ├── welcome/
+│   ├── login/
+│   ├── signup/
+│   ├── swipe/       # Main swipe interface
+│   ├── favorites/
+│   ├── dislikes/
+│   ├── shoppingbag/
+│   ├── category_menu/
+│   ├── settings/
+│   └── productdetail/
+├── utils/           # Utilities
+│   ├── cart_provider.dart
+│   ├── app_colors.dart
+│   └── app_text_styles.dart
+└── routes/          # Navigation routes
+
+scripts/
+├── add_sample_products.dart      # Script to add sample products
+└── create_user_documents.dart    # Migration script for user documents
+
+test/
+├── models/
+│   └── product_test.dart         # Unit test for Product model
+└── widgets/
+    └── swipe_test.dart           # Widget test for Swipe screen
+```
+
+---
+
+## Firebase Security Rules
+
+The app uses Firestore security rules to ensure user data privacy:
+- Users can only access their own favorites, dislikes, and cart
+- Products are readable by all authenticated users
+- Only product creators can modify their products
+- Admin products are marked with `isAdminProduct: true` for swipe functionality
+
+See `firestore.rules` for complete rules.
+
+---
+
+## Firestore Data Structure
+
+```
+users/
+  {uid}/
+    - uid: string
+    - email: string
+    - createdAt: timestamp
+    - updatedAt: timestamp
+    favorites/ (subcollection)
+      {productId}/
+        - product data
+    dislikes/ (subcollection)
+      {productId}/
+        - product data
+    cart/ (subcollection)
+      {productId}/
+        - product data
+        - quantity: number
+
+products/
+  {productId}/
+    - name, price, imageUrl, category, gender, etc.
+    - isAdminProduct: boolean
+```
+
+---
+
+## Team Members
+
+- **Ece Gülkanat (31983)** — Testing & QA Lead
+- **Zeynep Bilici (32333)** — Learning & Research Lead
+- **Zehra Kanberoğlu (32169)** — Integration & Repository Lead
+- **Burhan Berke Çakmak (32197)** — Presentation & Communication Lead
+- **Elif Ceren Akcan (32401)** — Documentation & Submission Lead
+- **Alper Dilek (32071)** — Project Coordinator
+
+---
