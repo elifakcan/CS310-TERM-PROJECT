@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.0
-
 
   # UI
   cupertino_icons: ^1.0.8
@@ -36,10 +34,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
-  # Assets
-  assets:
-    - assets/images/
   
   # Fonts
   fonts:
