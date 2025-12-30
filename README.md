@@ -202,6 +202,34 @@ products/
 
 ---
 
+## Architecture & Design Decisions
+
+- **Provider Pattern** was chosen for scalable and testable state management
+- **Firestore subcollections** were used to isolate user data and simplify security rules
+- **Dark mode persistence** was implemented using SharedPreferences instead of Firestore to reduce read costs
+
+---
+
+## User Flow
+
+1. User signs up / logs in
+2. Lands on Swipe Screen
+3. Swipes right/left or adds item to bag
+4. Views product details if interested
+5. Manages favorites, dislikes and shopping bag
+6. Checks profile statistics in settings
+
+---
+
+## Ethical & Privacy Considerations
+
+- No personal data other than email is stored
+- All user data is protected with Firestore security rules
+- Users can only access their own favorites, dislikes and cart
+- No third-party tracking or analytics is used
+
+---
+
 ## Team Members
 
 - **Ece Gülkanat (31983)** — Testing & QA Lead
