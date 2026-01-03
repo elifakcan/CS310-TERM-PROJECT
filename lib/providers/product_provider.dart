@@ -16,26 +16,23 @@ class ProductProvider extends ChangeNotifier {
   String? _error;
   String? get error => _error;
 
-  // =========================
+
   // PUBLIC PRODUCTS (READ)
-  // =========================
-  /// Kullanıcının kendi ürünlerini döndürür (Home screen için)
+
   Stream<List<Product>> streamPublicProducts() {
     final uid = _auth.currentUser?.uid;
     if (uid == null) return const Stream.empty();
     return _service.streamProductsForUser(uid);
   }
 
-  /// Tüm kullanıcılar için ortak ürün havuzu (Swipe screen için)
+
   Stream<List<Product>> streamAllProducts() {
     final uid = _auth.currentUser?.uid;
     if (uid == null) return const Stream.empty();
     return _service.streamAllProducts();
   }
 
-  // =========================
   // PUBLIC PRODUCTS (CREATE)
-  // =========================
   Future<void> addPublicProduct({
     required String title,
     required String description,
@@ -78,9 +75,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // =========================
   // PUBLIC PRODUCTS (DELETE)
-  // =========================
   Future<void> deleteProduct(String id) async {
     _error = null;
 
@@ -93,9 +88,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // =========================
   // PUBLIC PRODUCTS (UPDATE)
-  // =========================
   Future<void> updateProduct(
       String id, {
         String? title,
@@ -120,9 +113,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // =========================================================
   // FAVORITES (USER-SPECIFIC): users/{uid}/favorites/{productId}
-  // =========================================================
 
   /// Favoriler listesi (realtime)
   Stream<List<Product>> streamMyFavorites() {
@@ -162,9 +153,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // =========================
   // DISLIKES (USER-SPECIFIC)
-  // =========================
 
   /// Dislike listesi (realtime)
   Stream<List<Product>> streamMyDislikes() {
