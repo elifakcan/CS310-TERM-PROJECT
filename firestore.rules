@@ -12,9 +12,9 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
     
-    // ============================================
-    // PRODUCTS COLLECTION (Public products - ortak havuz)
-    // ============================================
+    
+    // PRODUCTS COLLECTION (Public products)
+ 
     match /products/{productId} {
       // Authenticated users can read all products (hem tek doküman hem collection query)
       allow read: if isAuthenticated();
@@ -38,9 +38,7 @@ service cloud.firestore {
       allow read: if isAuthenticated();
     }
     
-    // ============================================
     // USERS COLLECTION (User-specific data)
-    // ============================================
     match /users/{userId} {
       // Users can only access their own user document
       allow read, write: if isOwner(userId);
