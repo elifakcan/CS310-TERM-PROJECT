@@ -5,12 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../lib/firebase_options.dart';
 
-/// Mevcut kullanıcılar için users/{uid} dokümanlarını oluşturur
-/// Bu script, halihazırda sign-up olmuş kullanıcılar için Firestore'da
-/// users/{uid} dokümanlarını oluşturur.
-/// 
-/// Kullanım:
-///   dart run scripts/create_user_documents.dart
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -23,21 +18,12 @@ void main() async {
   print('🔍 Creating user documents in Firestore...');
   print('');
   
-  // ============================================================
-  // ADIM 1: Firebase Console → Authentication → Users
-  //         bölümünden UID'leri kopyalayıp aşağıdaki listeye ekleyin
-  // ============================================================
+
   final userUids = <String>[
-    // Firebase Console'dan UID'leri buraya ekleyin
-    // Örnek:
-    // 'xRVEsksBveVszeHu3XqxEHt1Y4w2',
-    // 'abc123def456ghi789',
-    // 'xyz789uvw456rst123',
+   
   ];
   
-  // ============================================================
-  // ADIM 2: Eğer şu an giriş yapmış bir kullanıcı varsa, onu da ekle
-  // ============================================================
+
   final currentUser = auth.currentUser;
   if (currentUser != null && !userUids.contains(currentUser.uid)) {
     userUids.add(currentUser.uid);
@@ -65,13 +51,11 @@ void main() async {
     
     for (final uid in userUids) {
       try {
-        // User dokümanını oluştur (eğer yoksa merge ile güncelle)
         await db.collection('users').doc(uid).set({
           'uid': uid,
           'updatedAt': FieldValue.serverTimestamp(),
         }, SetOptions(merge: true));
         
-        // Eğer createdAt yoksa ekle
         final doc = await db.collection('users').doc(uid).get();
         if (!doc.exists || doc.data()?['createdAt'] == null) {
           await db.collection('users').doc(uid).update({
@@ -102,7 +86,6 @@ void main() async {
     print('❌ Error: $e');
   }
   
-  // Script'i sonlandır
   exit(0);
 }
 
