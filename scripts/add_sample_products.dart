@@ -11,7 +11,7 @@ void main() async {
   
   final db = FirebaseFirestore.instance;
   
-  // ⚠️ IMPORTANT: Add your Admin UID here
+
   // Firebase Console → Authentication → Users → Copy any user's UID (or create a new user)
   final adminUid = 'xRVEsksBveVszeHu3XqxEHt1Y4w2';
   
