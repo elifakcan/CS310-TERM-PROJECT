@@ -109,10 +109,8 @@ class FitSwipeApp extends StatelessWidget {
             ),
           ),
           
-          // Theme mode'u PrefsProvider'dan al
           themeMode: prefsProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
 
-          // AuthGate ile auth state kontrolü
           home: const AuthGate(),
 
           routes: {
