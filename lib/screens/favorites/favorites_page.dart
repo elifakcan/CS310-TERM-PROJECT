@@ -152,7 +152,7 @@ class FavoritesPage extends StatelessWidget {
                         final productProviderRef = context.read<ProductProvider>();
                         final scaffoldMessenger = ScaffoldMessenger.of(context);
                         
-                        // Önce SnackBar'ı göster
+                        
                         scaffoldMessenger.showSnackBar(
                           SnackBar(
                             content: Text('$productTitle removed from favorites'),
@@ -162,8 +162,7 @@ class FavoritesPage extends StatelessWidget {
                               label: 'Undo',
                               textColor: Colors.white,
                               onPressed: () async {
-                                // Undo: Ürünü tekrar favorilere ekle
-                                // Provider referansını baştan aldık, context kullanmadan direkt kullan
+                              
                                 try {
                                   await productProviderRef.toggleFavorite(productCopy, false);
                                 } catch (e) {
