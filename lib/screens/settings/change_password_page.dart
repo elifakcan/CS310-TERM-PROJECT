@@ -114,6 +114,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           key: _formKey,
           child: Column(
             children: [
+              Image.asset(
+                'assets/images/placeholder.png',
+                height: 120,
+              ),
+              const SizedBox(height: 20),
+
               TextFormField(
                 controller: oldPass,
                 decoration: const InputDecoration(labelText: 'Old Password'),
