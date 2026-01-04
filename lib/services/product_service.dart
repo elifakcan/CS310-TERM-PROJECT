@@ -8,10 +8,7 @@ class ProductService {
   ProductService({FirebaseFirestore? db}) 
       : _db = db ?? FirebaseFirestore.instance;
 
-  // ---------------------------
-  // PUBLIC PRODUCTS (READ)
-  // ---------------------------
-  /// Kullanıcının sadece **kendi** ürünlerini döndürür (Home screen için)
+  
   Stream<List<Product>> streamProductsForUser(String uid) {
     return _db
         .collection('products')
@@ -69,30 +66,23 @@ class ProductService {
         );
   }
 
-  // ---------------------------
-  // PUBLIC PRODUCTS (CREATE)
-  // ---------------------------
+  
+  
   Future<void> addProduct(Product p) async {
     await _db.collection('products').add(p.toMap());
   }
 
-  // ---------------------------
-  // PUBLIC PRODUCTS (UPDATE)
-  // ---------------------------
+  
   Future<void> updateProduct(String id, Map<String, dynamic> data) async {
     await _db.collection('products').doc(id).update(data);
   }
 
-  // ---------------------------
-  // PUBLIC PRODUCTS (DELETE)
-  // ---------------------------
+  
   Future<void> deleteProduct(String id) async {
     await _db.collection('products').doc(id).delete();
   }
 
-  // =========================================================
-  // FAVORITES (USER-SPECIFIC): users/{uid}/favorites/{productId}
-  // =========================================================
+  
 
   /// Favorileri realtime stream olarak döndürür
   Stream<List<Product>> streamFavoriteProducts(String uid) {
@@ -183,9 +173,7 @@ class ProductService {
         .delete();
   }
 
-  // =========================================================
-  // DISLIKES (USER-SPECIFIC): users/{uid}/dislikes/{productId}
-  // =========================================================
+  
 
   /// Dislike edilen ürünleri realtime stream olarak döndürür
   Stream<List<Product>> streamDislikedProducts(String uid) {
@@ -385,9 +373,7 @@ class ProductService {
         });
   }
 
-  // =========================================================
-  // CART (USER-SPECIFIC): users/{uid}/cart/{productId}
-  // =========================================================
+
 
   /// Cart'taki ürünleri realtime stream olarak döndürür
   Stream<List<Product>> streamCartProducts(String uid) {
