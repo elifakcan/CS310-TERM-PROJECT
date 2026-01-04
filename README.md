@@ -20,7 +20,7 @@ FitSwipe was developed as a CS310 Mobile Application Development course project.
 - **User Authentication**: Secure email/password authentication via Firebase Auth with automatic user document creation
 - **Swipe-based Discovery**: Swipe through admin-curated outfit recommendations
 - **Favorites & Dislikes**: Save liked outfits and track disliked ones with undo functionality
-- **Shopping Bag with Quantity Controls**: Users can adjust item quantities in the cart using increment and decrement buttonsd
+- **Shopping Bag (Add/Remove)**: Products are added to or removed from the shopping bag using a presence-based cart structure without quantity controls.
 - **Category Filtering**: Browse favorites by category (DRESS, JACKETS, COATS, SKIRTS, etc.) and gender
 - **Real-time Sync**: All data synced with Firebase Firestore in real-time with proper subcollection structure
 - **Dark Mode**: Toggle between light and dark themes (persisted with SharedPreferences)
@@ -173,30 +173,49 @@ The app uses Firestore security rules to ensure user data privacy:
 See `firestore.rules` for complete rules.
 
 ---
+tamam 👍 aşağıya **README’ye birebir koyabileceğin, son ve temiz hâlini** atıyorum.
+Bu versiyon **Firestore’daki gerçek yapı ile %100 uyumlu**, quantity karmaşası yok, hocaya da net mesaj veriyor.
+
+---
 
 ## Firestore Data Structure
 
-```
+```text
 users/
   {uid}/
     - uid: string
     - email: string
     - createdAt: timestamp
     - updatedAt: timestamp
+
     favorites/ (subcollection)
       {productId}/
-        - product data
+        - product snapshot data
+        - addedAt: timestamp
+
     dislikes/ (subcollection)
       {productId}/
-        - product data
-    cart/ (subcollection)
-      {productId}/
-        - product data
-        - quantity: number
+        - product snapshot data
+        - addedAt: timestamp
 
+    cart/ (subcollection)   // shopping bag
+      {productId}/
+        - product snapshot data
+        - addedAt: timestamp
+        // Document existence represents cart state 
+```
+
+```text
 products/
   {productId}/
-    - name, price, imageUrl, category, gender, etc.
+    - title: string
+    - price: number
+    - imageUrl: string
+    - category: string
+    - gender: string
+    - description: string
+    - createdAt: timestamp
+    - createdBy: uid
     - isAdminProduct: boolean
 ```
 
@@ -204,9 +223,15 @@ products/
 
 ## Architecture & Design Decisions
 
-- **Provider Pattern** was chosen for scalable and testable state management
-- **Firestore subcollections** were used to isolate user data and simplify security rules
-- **Dark mode persistence** was implemented using SharedPreferences instead of Firestore to reduce read costs
+* **Provider Pattern** was chosen for scalable and testable state management
+* **Firestore subcollections** are used to isolate user-specific data and simplify security rules
+* **Cart (Bag) Design** is implemented as a *presence-based structure*:
+  a product is considered in the cart if its document exists under
+  `users/{uid}/cart/{productId}`.
+* **Product snapshot data** is stored in user subcollections (favorites, dislikes, cart)
+  to reduce additional reads and improve UI performance.
+* **Dark mode persistence** is implemented using SharedPreferences instead of Firestore
+  to reduce database read costs.
 
 ---
 
