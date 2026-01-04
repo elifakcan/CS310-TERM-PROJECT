@@ -124,40 +124,51 @@ All tests must pass successfully. If any test fails, check:
 ## App Structure
 
 ```
+assets/
+├── fonts/
+├── images/
+
 lib/
-├── models/          # Data models (Product)
-├── services/        # Firebase services (ProductService)
-├── providers/       # State management
+├── main.dart                    # Application entry point
+├── firebase_options.dart        # Firebase configuration (auto-generated)
+├── models/                      # Data models (Product)
+│   └── product.dart
+├── services/                    # Firebase services
+│   └── product_service.dart
+├── providers/                   # State management
 │   ├── auth_provider.dart
 │   ├── product_provider.dart
 │   └── prefs_provider.dart
-├── screens/         # UI screens
+├── screens/                     # UI screens
 │   ├── auth_gate.dart
 │   ├── welcome/
 │   ├── login/
 │   ├── signup/
-│   ├── swipe/       # Main swipe interface
+│   ├── swipe/                   # Main swipe interface
 │   ├── favorites/
 │   ├── dislikes/
 │   ├── shoppingbag/
 │   ├── category_menu/
 │   ├── settings/
 │   └── productdetail/
-├── utils/           # Utilities
+├── utils/                       # Utilities
 │   ├── cart_provider.dart
 │   ├── app_colors.dart
+│   ├── app_paddings.dart
 │   └── app_text_styles.dart
-└── routes/          # Navigation routes
+└── routes/                      # Navigation routes
+    └── app_routes.dart
 
 scripts/
-├── add_sample_products.dart      # Script to add sample products
-└── create_user_documents.dart    # Migration script for user documents
+├── add_sample_products.dart     # Script to add sample products
+└── create_user_documents.dart   # Migration script for user documents
 
 test/
 ├── models/
-│   └── product_test.dart         # Unit test for Product model
+│   └── product_test.dart        # Unit test for Product model
 └── widgets/
-    └── swipe_test.dart           # Widget test for Swipe screen
+    └── swipe_test.dart          # Widget test for Swipe screen
+
 ```
 
 ---
