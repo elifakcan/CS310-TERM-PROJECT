@@ -155,7 +155,7 @@ class DislikesPage extends StatelessWidget {
                               final productProviderRef = context.read<ProductProvider>();
                               final scaffoldMessenger = ScaffoldMessenger.of(context);
                               
-                              // Önce SnackBar'ı göster
+                            
                               scaffoldMessenger.showSnackBar(
                                 SnackBar(
                                   content: Text('$productTitle removed from dislikes'),
@@ -165,8 +165,7 @@ class DislikesPage extends StatelessWidget {
                                       label: 'Undo',
                                       textColor: Colors.white,
                                       onPressed: () async {
-                                        // Undo: Ürünü tekrar dislikes'a ekle
-                                        // Provider referansını baştan aldık, context kullanmadan direkt kullan
+                                      
                                         try {
                                           await productProviderRef.addDislike(productCopy);
                                         } catch (e) {
