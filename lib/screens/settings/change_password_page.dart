@@ -83,7 +83,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 onPressed: () {
                   Navigator.pop(context); // Close dialog
                   Navigator.pop(context); // Close change password page
-                  // Navigate to welcome/login page (AuthGate will handle this)
+                  
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     AppRoutes.welcome,
                     (route) => false,
