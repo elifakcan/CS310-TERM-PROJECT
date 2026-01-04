@@ -46,7 +46,7 @@ class _CategoryMenuPart2PageState extends State<CategoryMenuPart2Page> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     
-    // AppBar kaldırıldı - parent CategoryMenuPage zaten AppBar'a sahip
+    
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
