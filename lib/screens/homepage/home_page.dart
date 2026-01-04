@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ➜ SignUp'tan gelen argümanları al
+    
     final args = ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
 
     final name = (args?['name'] ?? '').trim();
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 40),
 
-          // 🔹 İkonları buton yapıp yönlendirme ekledim
+        
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
