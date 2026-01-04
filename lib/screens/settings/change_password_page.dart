@@ -115,7 +115,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           child: Column(
             children: [
               Image.asset(
-                'assets/images/placeholder.png',
+                'assets/images/password.png',
                 height: 120,
               ),
               const SizedBox(height: 20),
