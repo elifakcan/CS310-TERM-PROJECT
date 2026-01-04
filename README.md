@@ -173,10 +173,6 @@ The app uses Firestore security rules to ensure user data privacy:
 See `firestore.rules` for complete rules.
 
 ---
-tamam 👍 aşağıya **README’ye birebir koyabileceğin, son ve temiz hâlini** atıyorum.
-Bu versiyon **Firestore’daki gerçek yapı ile %100 uyumlu**, quantity karmaşası yok, hocaya da net mesaj veriyor.
-
----
 
 ## Firestore Data Structure
 
